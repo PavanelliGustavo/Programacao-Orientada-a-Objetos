@@ -8,14 +8,43 @@
 
 using namespace std;
 
+/**
+ * @class Pessoa
+ * @brief Entidade base que representa uma Pessoa no sistema.
+ * 
+ * @details Esta classe define os atributos comuns a Gerentes e Hóspedes.
+ * A chave primária(PK) do resgistro é o EMAIL.
+ */
+
 class Pessoa {
     private:
         Nome nome;
         EMAIL email;
     public:
+        /**
+         * @brief Atribui o Nome da Pessoa.
+         * @param novoNome Objeto Domínio Nome, validado para conter entre 5 e 20
+         * caracteres e formatação correta.
+         */
         void setNome(const Nome& novoNome);
+
+        /**
+         * @brief Atribui o EMAIL da Pessoa.
+         * @param novoEmail Objeto Domínio EMAIL, validado seguindo o padrão
+         * parte-local@domínio.
+         */
         void setEmail(const EMAIL& novoEmail);
+
+        /**
+         * @brief Retorna o Nome da Pessoa.
+         * @return O objeto Domínio Nome.
+         */
         Nome getNome() const;
+
+        /**
+         * @brief Retorna o EMAIL da Pessoa.
+         * @return O objeto Domínio EMAIL.
+         */
         EMAIL getEmail() const;
 };
 
@@ -35,14 +64,41 @@ inline EMAIL Pessoa::getEmail() const {
     return email;
 }
 
+/**
+ * @class Gerente
+ * @brief Entidade que representa o Gerente do sistema.
+ * 
+ * @details Herda de Pessoa e adiciona atributos de acesso: Ramal e Senha.
+ */
 class Gerente : public Pessoa {
     private:
         Ramal ramal;
         Senha senha;
     public:
+        /**
+         * @brief Atribui o Ramal de contato do Gerente.
+         * @param novoRamal Objeto Domínio Ramal, validado para conter
+         * um valor entre 00 e 50.
+         */
         void setRamal(const Ramal& novoRamal);
+
+        /**
+         * @brief Atribui a Senha de acesso do Gerente.
+         * @param novaSenha Objeto Domínio Senha, validado para conter 5 caracteres
+         * com composição mista e sem repetição sequencial.
+         */
         void setSenha(const Senha& novaSenha);
+
+        /**
+         * @brief Retorna o Ramal do Gerente.
+         * @return O objeto Domínio Ramal.
+         */
         Ramal getRamal() const;
+
+        /**
+         * @brief Retorna a Senha do Gerente.
+         * @return O objeto Domínio Senha.
+         */
         Senha getSenha() const;
 };
 
@@ -62,14 +118,42 @@ inline Senha Gerente::getSenha() const{
     return senha;
 }
 
+/**
+ * @class Hóspede
+ * @brief Entidade que representa um Hóspede que fará reservas.
+ * 
+ * @details Herda de Pessoa e adiciona atributos necessários para o registro e
+ * pagamento: Endereço e Cartão.
+ */
 class Hospede : public Pessoa {
     private:
         Endereco endereco;
         Cartao cartao;
     public:
+        /**
+         * @brief Atribui o Endereço do Hóspede.
+         * @param novoEndereco Objeto Domínio Endereco, validado para conter entre
+         * 5 e 30 caracteres com regras de sequẽncia específicas.
+         */
         void setEndereco(const Endereco& novoEndereco);
+
+        /**
+         * @brief Atribui o Cartão do Hóspede.
+         * @param novoCartao Objeto Domínio Cartao, validado para conter 16
+         * dígitos e seguir o Algoritmo de Luhn.
+         */
         void setCartao(const Cartao& novoCartao);
+
+        /**
+         * @brief Retorna o Endereço do Hóspede.
+         * @return O objeto Domínio Endereco.
+         */
         Endereco getEndereco() const;
+
+        /**
+         * @brief Retorna o Cartão do Hóspede.
+         * @return O objeto Domínio Cartao.
+         */
         Cartao getCartao() const;
 };
 
@@ -89,6 +173,13 @@ inline Cartao Hospede::getCartao() const {
     return cartao;
 }
 
+/**
+ * @class Hotel
+ * @brief Entidade que representa um Hotel geenciado pelo sistema.
+ * 
+ * @details Contém os dados de identificação e localização do hotel.
+ * A chave primária(PK) do resgistro é o Codigo.
+ */
 class Hotel {
     private:
         Nome nome;
@@ -96,13 +187,54 @@ class Hotel {
         Telefone telefone;
         Codigo codigo;
     public:
+        /**
+         * @brief Atribui o Nome do Hotel.
+         * @param novoNome Objeto Domínio Nome.
+         */
         void setNome(const Nome& novoNome);
+
+        /**
+         * @brief Atribui o Endereço do Hotel.
+         * @param novoEndereco Objeto Domínio Endereco.
+         */
         void setEndereco(const Endereco& novoEndereco);
+
+        /**
+         * @brief Atribui o Telefone do Hotel.
+         * @param novoTelefone Objeto Domínio Telefone, validado no formato
+         * +DDDDDDDDDDDDDD.
+         */
         void setTelefone(const Telefone& novoTelefone);
+
+        /**
+         * @brief Atribui o Código do Hotel.
+         * @param novoCodigo Objeto Domínio Codigo, validado para conter 10
+         * caracteres alfanuméricos.
+         */
         void setCodigo(const Codigo& novoCodigo);
+
+        /**
+         * @brief Retorna o Nome do Hotel.
+         * @return O objeto Domínio Nome.
+         */
         Nome getNome() const;
+
+        /**
+         * @brief Retorna o Endereço do Hotel.
+         * @return O objeto Domínio Endereco.
+         */
         Endereco getEndereco() const;
+
+        /**
+         * @brief Retorna o Telefone do Hotel.
+         * @return O objeto Domínio Telefone.
+         */
         Telefone getTelefone() const;
+
+        /**
+         * @brief Retorna o Código (PK) do Hotel.
+         * @return O objeto Domínio Codigo.
+         */
         Codigo getCodigo() const;
 };
 
