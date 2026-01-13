@@ -29,6 +29,9 @@ The system is organized into two main layers that communicate via well-defined i
 
 Responsible for user interaction and data validation. It acts as a client to the service layer.
 
+
+<img src="docs/Layers.png" alt="Layers" width="600">
+
 * **MAI (Access Interface Module)**  
   Acts as the central hub, routing the user to authentication, personal profile, or reservation modules.
 
